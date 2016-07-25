@@ -47,13 +47,21 @@
 
     <!--配置sqlSessionFactory-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--配置数据连接池-->
         <property name="dataSource" ref="dataSource"/>
-        <property name="mapperLocations" value="classpath:mybatis-config.xml"/>
+        <!--配置mybatis全局配置文件-->
+        <property name="configLocations" value="classpath:mybatis-config.xml"/>
+        <!--配置使用别名代替包名-->
+        <property name="typeAliasesPackage" value="com.seckill.model"/>
+        <!--扫描sql mapper文件-->
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
     </bean>
 
-    <!--配置Dao扫描-->
+    <!--配置Dao扫描,动态实现Dao接口-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="sqlSessionFactoryBeanName" ref="sqlSessionFactory"/>
+        <!--注入sqlSessionFactory-->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+        <!--定义扫描的包接口-->
         <property name="basePackage" value="com.seckill.dao"/>
     </bean>
 </beans>
