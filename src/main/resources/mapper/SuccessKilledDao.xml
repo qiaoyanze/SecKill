@@ -4,12 +4,12 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.seckill.dao.SuccessKilledDao">
 
-    <insert id="add">
+    <insert id="insertSuccessKilled">
         <!--ignore 忽略主键冲突报错-->
         insert ignore into
-            t_success_killed (seckill_id,user_phone)
+            t_success_killed (seckill_id,user_phone,state)
         values
-            (#{secKillId},#{userPhone})
+            (#{secKillId},#{userPhone},0)
     </insert>
 
     <select id="queryByIdWithSecKill" parameterType="long" resultType="com.seckill.model.SuccessKilled">
@@ -29,6 +29,8 @@
         inner join
             t_seckill s on sk.seckill_id = s.seckill_id
         where
-            sk.seckill_id = #{seckillId}
+            sk.seckill_id = #{secKillId}
+        and
+            sk.user_phone = #{userPhone}
     </select>
 </mapper>

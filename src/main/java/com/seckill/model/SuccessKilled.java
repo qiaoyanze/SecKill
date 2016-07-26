@@ -70,4 +70,15 @@ public class SuccessKilled {
     public void setSecKill(SecKill secKill) {
         this.secKill = secKill;
     }
+
+    @Override
+    public String toString() {
+        return "SuccessKilled{" +
+                "seckillId=" + seckillId +
+                ", userPhone=" + userPhone +
+                ", state=" + state +
+                ", createTime=" + createTime +
+                ", secKill=" + secKill +
+                '}';
+    }
 }

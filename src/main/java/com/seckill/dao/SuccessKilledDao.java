@@ -1,6 +1,7 @@
 package com.seckill.dao;
 
 import com.seckill.model.SuccessKilled;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * Created by QYANZE on 2016/7/24.
@@ -14,7 +15,7 @@ public interface SuccessKilledDao {
      * @param userPhone
      * @return
      */
-    int add(long secKillId,long userPhone);
+    int insertSuccessKilled(@Param("secKillId") long secKillId, @Param("userPhone") long userPhone);
 
     /**
      * 根据id查询秒杀明细，带有秒杀商品对象
@@ -22,5 +23,5 @@ public interface SuccessKilledDao {
      * @param secKillId
      * @return
      */
-    SuccessKilled queryByIdWithSecKill(long secKillId);
+    SuccessKilled queryByIdWithSecKill(@Param("secKillId") long secKillId, @Param("userPhone") long userPhone);
 }
